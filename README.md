@@ -2,7 +2,7 @@
 
 Payload encoding toolkit for Unicode smuggling, steganography, and text obfuscation.
 
-**[Live Demo →](https://ascii-smuggler.pages.dev)**
+**[Live Demo →](https://ascii-smuggler.coey.dev/)**
 
 ![ASCII Smuggler](https://img.shields.io/badge/astro-5-purple) ![Tailwind](https://img.shields.io/badge/tailwind-4-blue) ![Cloudflare Pages](https://img.shields.io/badge/deploy-cloudflare_pages-orange)
 
