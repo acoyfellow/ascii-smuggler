@@ -247,14 +247,16 @@ export default function Smuggler() {
   const randomizeChaos = () => {
     const all = Object.keys(TECHNIQUES);
     const count = Math.floor(Math.random() * all.length) + 1;
-    const selected = [];
-    for (let i = 0; i < count; i++) {
-      selected.push(all[Math.floor(Math.random() * all.length)]);
-    }
-    setSelectedTechniques([...new Set(selected)]);
+    
+    // Shuffle and select without duplicates
+    const shuffled = [...all].sort(() => Math.random() - 0.5);
+    const selected = shuffled.slice(0, count);
+    
+    setSelectedTechniques(selected);
     const styles: Array<"sequential" | "random" | "all" | "chaos"> = ["sequential", "random", "all", "chaos"];
-    setChaosStyle(styles[Math.floor(Math.random() * styles.length)]);
-    addLog(`🎲 Randomized: ${selected.length} techniques in ${chaosStyle} mode`, "info");
+    const newStyle = styles[Math.floor(Math.random() * styles.length)];
+    setChaosStyle(newStyle);
+    addLog(`🎲 Randomized: ${selected.length} techniques in ${newStyle} mode`, "info");
   };
 
   const toggleChaos = () => {
@@ -614,11 +616,12 @@ export default function Smuggler() {
                     }`}
                   >
                     {chaosMode && (
-                      <input
-                        type="checkbox"
-                        checked={active}
-                        onChange={() => {}}
-                        className="w-3.5 h-3.5 rounded cursor-pointer accent-red-600"
+                      <span
+                        className="w-3.5 h-3.5 rounded cursor-pointer accent-red-600 inline-block border-2"
+                        style={{
+                          borderColor: active ? '#dc2626' : '#d1d5db',
+                          backgroundColor: active ? '#dc2626' : 'white',
+                        }}
                       />
                     )}
                     <span
